@@ -26,11 +26,8 @@ class ForegroundService : Service() {
 
     private fun buildNotification(): Notification {
         val notificationIntent = Intent(this, MainActivity::class.java)
-        val pendingFlags: Int = if(Build.VERSION.SDK_INT >= 32) {
+        val pendingFlags: Int =
             PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        } else {
-            PendingIntent.FLAG_UPDATE_CURRENT
-        }
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, pendingFlags)
 
         val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
